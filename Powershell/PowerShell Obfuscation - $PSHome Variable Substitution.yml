@@ -22,7 +22,7 @@ detection:
   #useful_information: Script block logging must be enabled: EVID: 4104
   selection:
     ScriptBlockText|re:
-      - '.*(\$PsHome\[\d{1,2}\])\+(\$PsHome\[\d{1,2}\])\+'
+      - '(?i).*(\$PsHome\[\d{1,2}\])\+(\$PsHome\[\d{1,2}\])\+'
   condition: selection
 falsepositives:
   - Unknown
