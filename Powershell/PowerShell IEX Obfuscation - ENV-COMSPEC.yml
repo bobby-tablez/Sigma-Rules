@@ -8,7 +8,6 @@ modified: 2022/02/09
 references:
     - https://www.varonis.com/blog/powershell-obfuscation-stealth-confusion-part-ii
     - https://hatching.io/blog/powershell-analysis/
-
 tags:
     - attack.T1027
     - attack.T1059.001
