@@ -1,5 +1,5 @@
 title: Masquerading: Executable Filetype Activity - Fonts Folder
-id: 19569a00-89d3-11ec-a8a3-0242ac120002
+id: 30f33f42-89d3-11ec-a8a3-0242ac120002
 description: This rule looks for references to unusual file extensions contained inside the C:\Windows\Fonts directory. Malware may attempt to masquerade activity inside this directory as it contains writable permissions to standard users. 
 author: Tim (Bobby_Tablez) Peck
 status: experimental
