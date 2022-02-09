@@ -1,5 +1,5 @@
 title: PowerShell Obfuscation - $PsHome Variable Substitution
-id: 426f6262795461626c657a-0010002
+id: e58c6d30-89d2-11ec-a8a3-0242ac120002
 description: This rule looks for an obfuscation technique involving naitive PowerShell. To abfuscate code, a simple character substitution can be used by leveraging built in environmental variables, in this case: $PsHome
 author: Tim (Bobby_Tablez) Peck
 status: experimental
