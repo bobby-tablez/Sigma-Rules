@@ -21,7 +21,7 @@ logsource:
 detection:
   #useful_information: Script block logging must be enabled: EVID: 4104
   selection:
-    ScriptBlockText|contains|any:
+    ScriptBlockText|contains:
       - 'ssecorp'
       - 'noitucexe'
       - 'maerts'
