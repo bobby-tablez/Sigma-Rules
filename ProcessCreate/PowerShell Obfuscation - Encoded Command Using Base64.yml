@@ -1,0 +1,25 @@
+title: PowerShell Obfuscation: Encoded Command Using Base64
+id: 30f34712-89d3-11ec-a8a3-0242ac120002
+description: Detects encoded commands executed through MS PowerShell. A common technique used by malware to obfuscate commands.
+author: Tim (Bobby_Tablez) Peck
+status: experimental
+date: 2021/04/13
+modified: 2022/02/09
+references:
+    - https://unit42.paloaltonetworks.com/unit42-pulling-back-the-curtains-on-encodedcommand-powershell-attacks/
+    - https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_powershell_exe?view=powershell-5.1
+    - https://attack.mitre.org/techniques/T1132/
+tags:
+    - attack.T1132
+    - attack.data_encoding
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    CommandLine|re:
+      - '(?i).*powershell(\.exe)?.*\-e([^xp]|([ncodema^]+)?)\s.*[A-Za-z0-9+\/=]{100,}'
+  condition: selection
+falsepositives:
+  - Unlikely
+level: high
