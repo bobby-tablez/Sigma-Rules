@@ -1,5 +1,5 @@
 title: PowerShell Obfuscation - Reversed Strings
-id: ad1e31ee-0f53-4157-b3e9-b2e500750464
+id: 30f345e6-89d3-11ec-a8a3-0242ac120002
 description: This rule detects reversed strings contained within PowerShell commands. Malicious actors or malware may try to obfuscate known malicious PowerShell commands or entire scripts by performing a function which would cause the string to be reversed prior to execution. This method can evade AV or signature detection.
 author: Tim (Bobby_Tablez) Peck
 status: experimental
