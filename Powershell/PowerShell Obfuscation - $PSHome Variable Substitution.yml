@@ -8,7 +8,6 @@ modified: 2022/02/09
 references:
     - https://www.blackhat.com/docs/us-17/thursday/us-17-Bohannon-Revoke-Obfuscation-PowerShell-Obfuscation-Detection-And%20Evasion-Using-Science.pdf
     - https://helloitsliam.com/2018/03/21/obfuscating-powershell-commands/
-
 tags:
     - attack.T1027
     - attack.T1059.001
