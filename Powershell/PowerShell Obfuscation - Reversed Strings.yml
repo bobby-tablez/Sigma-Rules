@@ -1,0 +1,39 @@
+title: PowerShell Obfuscation - Reversed Strings
+id: 426f6262795461626c657a-0010004
+description: This rule detects reversed strings contained within PowerShell commands. Malicious actors or malware may try to obfuscate known malicious PowerShell commands or entire scripts by performing a function which would cause the string to be reversed prior to execution. This method can evade AV or signature detection.
+author: Tim (Bobby_Tablez) Peck
+status: experimental
+date: 2022/01/03
+modified: 2022/02/09
+references:
+    - https://speakerdeck.com/heirhabarov/hunting-for-powershell-abuse?slide=64
+    - https://www.powershellcenter.com/wp-content/uploads/2020/09/Hunting-For-PowerShell-Abuse.pdf
+    - https://github.com/danielbohannon/Invoke-Obfuscation
+tags:
+    - attack.T1027
+    - attack.T1059.001
+    - attack.T1001
+    - attack.data.obfuscation
+logsource:
+  product: windows
+  category: ps_script
+  definition: Script block logging must be enabled
+detection:
+  #useful_information: Script block logging must be enabled: EVID: 4104
+  selection:
+    ScriptBlockText|contains|any:
+      - 'ssecorp'
+      - 'noitucexe'
+      - 'maerts'
+      - 'llehsrewop'
+      - 'hcaerof'
+      - 'esnopser'
+      - 'elifotevas'
+      - 'ekovni'
+      - 'dnammoc'
+      - 'daolnwod'
+      - '46esab'
+  condition: selection
+falsepositives:
+  - Unknown
+level: high
