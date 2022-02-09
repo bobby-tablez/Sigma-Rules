@@ -1,5 +1,5 @@
 title: PowerShell Obfuscation - $ShellID Variable Substitution
-id: 426f6262795461626c657a-0010003
+id: d0550f6c-89d2-11ec-a8a3-0242ac120002
 description: This rule looks for an obfuscation technique that attackers and malware may use to hide an invoke (IEX) expression to execute further stagers.
 author: Tim (Bobby_Tablez) Peck
 status: experimental
