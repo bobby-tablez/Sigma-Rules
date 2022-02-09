@@ -1,5 +1,5 @@
 title: PowerShell Obfuscation - $ShellID Variable Substitution
-id: f188b1c0-89d2-11ec-a8a3-0242ac120002
+id: 30f34492-89d3-11ec-a8a3-0242ac120002
 description: This rule looks for an obfuscation technique involving naitive PowerShell. To abfuscate code, a simple character substitution can be used by leveraging built in environmental variables, in this case: $ShellID
 author: Tim (Bobby_Tablez) Peck
 status: experimental
