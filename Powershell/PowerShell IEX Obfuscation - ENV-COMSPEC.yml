@@ -1,0 +1,29 @@
+title: PowerShell Obfuscation - $ShellID Variable Substitution
+id: 426f6262795461626c657a-0010003
+description: This rule looks for an obfuscation technique that attackers and malware may use to hide an invoke (IEX) expression to execute further stagers.
+author: Tim (Bobby_Tablez) Peck
+status: experimental
+date: 2022/02/05
+modified: 2022/02/09
+references:
+    - https://www.varonis.com/blog/powershell-obfuscation-stealth-confusion-part-ii
+    - https://hatching.io/blog/powershell-analysis/
+
+tags:
+    - attack.T1027
+    - attack.T1059.001
+    - attack.T1001
+    - attack.data.obfuscation
+logsource:
+  product: windows
+  category: ps_script
+  definition: Script block logging must be enabled
+detection:
+  #useful_information: Script block logging must be enabled: EVID: 4104
+  selection:
+    ScriptBlockText|re:
+      - '(?i).*\$env\:comspec\[(\s+)?4(\s+)?\,(\s+)?(24|15)(\s+)?\,(\s+)?25(\s+)?\](\s+)?\-Join'
+  condition: selection
+falsepositives:
+  - Unknown
+level: high
