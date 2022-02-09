@@ -1,0 +1,29 @@
+title: PowerShell Obfuscation - $PsHome Variable Substitution
+id: 426f6262795461626c657a-0010002
+description: This rule looks for an obfuscation technique involving naitive PowerShell. To abfuscate code, a simple character substitution can be used by leveraging built in environmental variables, in this case: $PsHome
+author: Tim (Bobby_Tablez) Peck
+status: experimental
+date: 2022/02/06
+modified: 2022/02/09
+references:
+    - https://www.blackhat.com/docs/us-17/thursday/us-17-Bohannon-Revoke-Obfuscation-PowerShell-Obfuscation-Detection-And%20Evasion-Using-Science.pdf
+    - https://helloitsliam.com/2018/03/21/obfuscating-powershell-commands/
+
+tags:
+    - attack.T1027
+    - attack.T1059.001
+    - attack.T1001
+    - attack.data.obfuscation
+logsource:
+  product: windows
+  category: ps_script
+  definition: Script block logging must be enabled
+detection:
+  #useful_information: Script block logging must be enabled: EVID: 4104
+  selection:
+    ScriptBlockText|re:
+      - '.*(\$PsHome\[\d{1,2}\])\+(\$PsHome\[\d{1,2}\])\+'
+  condition: selection
+falsepositives:
+  - Unknown
+level: high
