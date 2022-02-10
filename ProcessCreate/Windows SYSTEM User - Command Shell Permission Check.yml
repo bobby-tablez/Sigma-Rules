@@ -1,0 +1,26 @@
+title: Windows SYSTEM User - Command Shell Permission Check
+id: 30f34b7c-89d3-11ec-a8a3-0242ac120002
+description: Checks for the NT AUTHORITY/SYSTEM account performing a "whoami" command via PS or CMD terminal. This account is a target for attackers and malware, and should notmally not be running terminal commands.
+author: Tim Peck
+status: experimental
+date: 2021/06/23
+modified: 2022/02/10
+references:
+    - https://docs.microsoft.com/en-us/windows/win32/services/localsystem-account
+tags:
+    - attack.T1078
+    - attack.T1078.003
+    - attack.os_credential_dumping
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    CommandLine|contains:
+      - 'whoami'
+    User:
+      - 'system'
+  condition: selection
+falsepositives:
+  - Expected behavior by sysadmins
+level: medium
