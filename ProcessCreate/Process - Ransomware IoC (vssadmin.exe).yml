@@ -1,0 +1,26 @@
+title: Process: Ransomware IoC (vssadmin.exe)
+id: 30f34eb0-89d3-11ec-a8a3-0242ac120002
+description: This rule triggers on a well known IoC where the ransomware will inhibit recovery by deleting the system shadow copies using vssadmin.exe
+author: Tim Peck (Bobby_Tablez)
+status: experimental
+date: 2021/05/01
+modified: 2022/02/10
+references:
+    - https://www.trendmicro.com/vinfo/us/threat-encyclopedia/search/shadow%20force/14
+    - https://redcanary.com/blog/its-all-fun-and-games-until-ransomware-deletes-the-shadow-copies/
+    - https://www.fortinet.com/blog/threat-research/stomping-shadow-copies-a-second-look-into-deletion-methods
+tags:
+    - attack.T1490
+    - attack.T1485
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    Image|endswith: 'vssadmin.exe'
+    CommandLine|re:
+      - '(?i).*delete\s+shadows\s+\/all\s+\/quiet'
+  condition: selection
+falsepositives:
+  - Unlikely
+level: medium
