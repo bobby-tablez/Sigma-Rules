@@ -1,0 +1,28 @@
+title: PowerShell - Process Abuse: PowerShell Web File Download
+id: 30f34da2-89d3-11ec-a8a3-0242ac120002
+description: Windows PowerShell and PowerShell comes with file-download capabilities which can be leveraged by bad actors or malware to download payloads from C2 servers. 
+author: Tim (Bobby_Tablez) Peck
+status: experimental
+date: 2021/05/01
+modified: 2022/02/10
+references:
+    - https://adamtheautomator.com/powershell-download-file/
+    - https://4sysops.com/archives/use-powershell-to-download-a-file-with-http-https-and-ftp/
+tags:
+    - attack.T1105
+    - attack.T1059.001
+logsource:
+  product: windows
+  category: ps_script
+  definition: Script block logging must be enabled
+detection:
+  #useful_information: Script block logging must be enabled: EVID: 4104
+  selection:
+    ScriptBlockText|contains:
+      - 'New-Object System.Net.WebClient'
+      - 'Invoke-WebRequest'
+      - 'Start-BitsTransfer'
+  condition: selection
+falsepositives:
+  - Unknown
+level: high
