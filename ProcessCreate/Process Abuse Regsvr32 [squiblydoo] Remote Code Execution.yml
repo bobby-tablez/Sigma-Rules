@@ -18,6 +18,7 @@ logsource:
   product: windows
 detection:
   selection:
+    Image|endswith: 'regsvr32.exe'
     CommandLine|re:
       - '(?i).*\/i\:.*\.sct\s+scrobj\.dll'
   condition: selection
