@@ -1,0 +1,28 @@
+title: PowerShell Obfuscation - Reordering
+id: 30f34fbe-89d3-11ec-a8a3-0242ac120002
+description: This rule detects a known obfuscation technique that is called "Reordering". The formatting operator (-f) is dividing the string into several parts and it will reorder them by the curly bracket's numbers.
+author: Tim Peck
+status: experimental
+date: 2022/02/13
+modified: 2022/02/14
+references:
+    - https://www.blackhat.com/docs/us-17/thursday/us-17-Bohannon-Revoke-Obfuscation-PowerShell-Obfuscation-Detection-And%20Evasion-Using-Science.pdf
+    - https://www.cynet.com/attack-techniques-hands-on/powershell-obfuscation-demystified-series-chapter-2-concatenation-and-base64-encoding/
+tags:
+    - attack.T1027
+    - attack.T1059.001
+    - attack.T1001
+    - attack.data.obfuscation
+logsource:
+  product: windows
+  category: ps_script
+  definition: Script block logging must be enabled
+detection:
+  #useful_information: Script block logging must be enabled: EVID: 4104
+  selection:
+    ScriptBlockText|re:
+      - '(?i).*\"(\{\d+\}){4,}\"\s+\-f'
+  condition: selection
+falsepositives:
+  - Unknown
+level: high
