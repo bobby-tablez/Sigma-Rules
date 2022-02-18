@@ -1,6 +1,6 @@
 title: Process: Process Abuse - Wlrmdr.exe - AWB Attempt
 id: 30f351e4-89d3-11ec-a8a3-0242ac120002
-description: The process Wlmdr.exe or the Windows Logon Reminder executable can be used to bypass application whitelist restrictions.
+description: The process Wlmdr.exe or the Windows Logon Reminder executable can be used to bypass application whitelist restrictions. This rull looks for the process spawning child processes.
 author: Tim Peck
 status: experimental
 date: 2021/02/17
