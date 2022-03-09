@@ -1,0 +1,36 @@
+# omega - compound/second order attack behavior detection by Securonix
+title: Potential PS IEX Obfuscation ENV-COMSPEC Analytic
+uuid: WEL-PSH35-RUN
+tldr: This rule looks for an obfuscation technique that attackers and malware may use to hide an invoke (IEX) expression to execute further stagers.
+description: 'In PowerShell, Invoke Expressions are heavily monitored by AV, therefore obfuscating the expression inside a command could avoid detection. This rule looks for a technique that substitues the text "IEX" by calling system environmental variables to print IEX, without it printed in plain text. The obfuscated command "$env:comspec[4,15,25] -Join" takes the environment variable $env:comspec and pulls out the 4-, 15-, and 25-th characters to generate "IEX", the PowerShell alias for Invoke-Expression. The "join" operator takes the array and converts it to a string.'
+
+tags:
+    - attack.t1027
+    - attack.t1059.001
+    - attack.t1001
+    - attack.data.obfuscation
+
+omega_securonix_ueba:
+    snpr_policy:
+        violator: Activityaccount
+        category: ALERT
+        threatname: PowerShell IEX Obfuscation
+        functionality: Endpoint Management Systems
+
+logsource:
+  service: powershell
+  product: windows
+detection:
+  selection1:
+    ScriptBlockText|contains:
+      - $env:comspec[
+      - -Join
+  condition: selection1
+
+master_meta:
+  estimated_security_coverage_level: L0
+  estimated_sensitivity_specificity_level: ~
+  incorporated:
+    date: ~
+    name: ~
+  technical_details: ~
