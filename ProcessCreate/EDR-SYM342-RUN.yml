@@ -1,0 +1,47 @@
+# omega - compound/second order attack behavior detection by Securonix
+title: Executable Filetype Activity in Fonts Folder
+uuid: EDR-SYM342-RUN
+tldr: This rule looks for references to unusual file extensions contained inside the C:\Windows\Fonts directory. Malware may attempt to masquerade activity inside this directory as it contains writable permissions to standard users.
+
+reference:
+  - https://www.trendmicro.com/vinfo/us/threat-encyclopedia/malware/troj_coinmine.cye
+  - https://thedfirreport.com/2020/04/20/sqlserver-or-the-miner-in-the-basement/
+
+tags:
+  - attack.t1036
+  - attack.t1036.005
+
+omega_securonix_ueba:
+  snpr_policy:
+    violator: Activityaccount
+    category: ALERT
+    threatname: Suspicious Execution Pattern
+    functionality: Microsoft Windows
+
+ogsource:
+  category: process_creation
+  product: windows
+detection:
+  selection1:
+    CommandLine|contains:
+      - .exe
+      - .jar
+      - .ps1
+      - .vb
+      - .vbs
+      - .bat
+      - .dll
+      - .lnk
+      - .hta
+  selection2:
+    CommandLine|contains:
+      - c:\windows\fonts\
+  condition: selection1 and selection2
+
+master_meta:
+  estimated_security_coverage_level: L0
+  estimated_sensitivity_specificity_level: ~
+  incorporated:
+    date: ~
+    name: ~
+  technical_details: ~
