@@ -1,0 +1,30 @@
+title: PowerShell Obfuscation - Invoke-Mathfuscation
+id: 30f34492-89d3-11ec-a8a3-ad74da330116
+description: |
+  This rule looks for common patterns identified in the Invoke-Mathfuscation PowerShell script obfuscator.
+author: Tim (Bobby_Tablez) Peck
+status: experimental
+date: 2025/05/02
+modified: 2025/05/02
+references:
+    - https://github.com/bobby-tablez/Invoke-Mathfuscation
+tags:
+    - attack.T1027.010
+    - attack.defense_evasion
+logsource:
+  product: windows
+  category: ps_script
+  definition: Script block logging must be enabled
+detection:
+  #note: Script block logging must be enabled: EVID: 4104
+  selection1:
+    ScriptBlockText|startswith:
+      - '@('
+  selection2:
+    ScriptBlockText|contains|all:
+      - ')|%{'
+      - '+[char]('
+  condition: all of selection*
+falsepositives:
+  - Unknown
+level: high
